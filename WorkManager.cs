@@ -36,7 +36,5 @@ namespace projet.net
             
             //idk what to do next
         }
-
-        
     }
 }

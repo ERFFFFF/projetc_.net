@@ -8,8 +8,8 @@ namespace projet.net
 {
     interface IDisplay
     {
-        void DisplayChoices();
+        int DisplayChoices();
         void DisplayCreateNewWork();
-        void DisplayExecuteXWork();
+        List<int> DisplayExecuteXWork();
     }
 }

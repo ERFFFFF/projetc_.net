@@ -10,35 +10,39 @@ namespace projet.net
     {
         WorkManager workManager = new WorkManager();
 
-        public void DisplayChoices()
+        public int DisplayChoices()
         {
             while (true)
             {
                 // print choice of the user
                 Console.Write("1. Create a new work \n" +
-                    "2. Executa a work \n" +
+                    "2. Execute a work \n" +
                     "Enter the number of your choice : ");
 
                 // read user input
                 string choiceNewWork = Console.ReadLine();
-
-                Console.WriteLine($"You made the {choiceNewWork} choice");
-
-                // if the user type "1"
-                if (choiceNewWork == "1")
+                int y = 0;
+                // convert string to int
+                if (Int32.TryParse(choiceNewWork, out y))
                 {
-                    DisplayCreateNewWork();
-
-                    // exit the loop (while)
-                    break;
+                    //if the user type "1"
+                    if (y == 1)
+                    {
+                        return 1;
+                    }
+                    // if the user type "2"
+                    else if (y == 2)
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a correct value.");
+                    }
                 }
-                // if the user type "2"
-                else if (choiceNewWork == "2")
+                else
                 {
-                    DisplayExecuteXWork();
-
-                    // exit the loop (while)
-                    break;
+                    Console.WriteLine("Please enter a correct value.");
                 }
             }
         }
@@ -67,24 +71,82 @@ namespace projet.net
             }
             while (workManager.NoLoop == false);
         }
-        public void DisplayExecuteXWork()
+        public List<int> DisplayExecuteXWork()
         {
+            List<int> ListExecuteWork = new List<int>();
             string ChooseWork;
-
+            string AnotherWork;
+            bool choiceExecute = true;
+            bool numberchoice = true;
+            bool ChoiceAnotherWord = true;
             // call the ReadFile method in FileManager class
+
 
             // Display all the name of the work thanks to the method ReadFile
             Console.WriteLine("1. Name 1 \n" +
-                "2. Namae 2 \n" +
+                "2. Name 2 \n" +
                 "3. Name 3 \n" +
                 "4. Name 4 \n" +
                 "5. Name 5");
 
-            Console.Write("Which work do you want to execute ?");
-            ChooseWork = Console.ReadLine();
-
+            while (choiceExecute)
+            {
+                while (numberchoice)
+                {
+                    int x = 0;
+                    Console.Write("which work do you want to execute ? : ");
+                    ChooseWork = Console.ReadLine();
+                    // convert string input user into a int value
+                    if (Int32.TryParse(ChooseWork, out x))
+                    {
+                        if (x > 0 && x < 6)
+                        {
+                            ListExecuteWork.Add(x);
+                            numberchoice = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter a correct value.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a correct value.");
+                    }
+                }
+                
+                Console.Write("Execute another work ? (y/n) : ");
+                AnotherWork = Console.ReadLine();
+                while (ChoiceAnotherWord)
+                {
+                    if (AnotherWork == "y")
+                    {
+                        numberchoice = true;
+                        break;
+                    }
+                    else if (AnotherWork == "n")
+                    {
+                        choiceExecute = false;
+                        ChoiceAnotherWord = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a correct value.");
+                        break;
+                    }
+                }
+            }
+            // print the list
+            /*
+            foreach (int i in ListExecuteWork)
+            {
+                Console.WriteLine(i);
+            }
+            */
+            return ListExecuteWork;
+            
             //call the method ExecuteXWork
-            workManager.ExecuteXWork(ChooseWork);
+            //workManager.ExecuteXWork(ChooseWork);
         }
     }
 }

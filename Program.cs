@@ -10,8 +10,8 @@ namespace projet.net
     {
         static void Main(string[] args)
         {
-            DisplayConsole disp = new DisplayConsole();
-            disp.DisplayChoices();
+            WorkFlowManager workflow = new WorkFlowManager();
+            workflow.Choice();
             Console.ReadLine();
         }
     }

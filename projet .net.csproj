@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDisplay.cs" />
+    <Compile Include="WorkFlowManager.cs" />
     <Compile Include="WorkManager.cs" />
     <Compile Include="DisplayConsole.cs" />
     <Compile Include="Program.cs" />
