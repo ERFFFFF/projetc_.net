@@ -18,8 +18,6 @@ namespace projet.net
             
         }
 
-       // WorkManager workManager = new WorkManager();
-
         public int DisplayChoices()
         {
             while (true)
@@ -68,16 +66,16 @@ namespace projet.net
             };
             // function majuscule
             string name = "Name of your work : ";
-            works.name = loop(name);
+            works.name = Loop(name);
 
             string saveType = "Mirror save or Diferential save ? : ";
-            works.saveType = loop(saveType);
+            works.saveType = Loop(saveType);
 
             String sourcePath = "Source Directory of your work : ";
-            works.sourcePath = loop(sourcePath);
+            works.sourcePath = Loop(sourcePath);
 
             string targetPath = "Targeted Directory of your the work : ";
-            works.targetPath = loop(targetPath);
+            works.targetPath = Loop(targetPath);
 
             if (works.saveType != "Mirror" && works.saveType != "Differential")
             {
@@ -85,7 +83,7 @@ namespace projet.net
             }
             return works;
         }
-        public string loop(string consoleLog)
+        public string Loop(string consoleLog)
         {
             string checkEmpty;
             do
@@ -103,11 +101,11 @@ namespace projet.net
         public List<int> DisplayExecuteXWork()
         {
             List<int> ListExecuteWork = new List<int>();
-            string ChooseWork;
-            string AnotherWork;
+            string chooseWork;
+            string anotherWork;
             bool choiceExecute = true;
             bool numberchoice = true;
-            bool ChoiceAnotherWork = true;
+            bool choiceAnotherWork = true;
             // call the ReadFile method in FileManager class
 
 
@@ -124,9 +122,9 @@ namespace projet.net
                 {
                     int x = 0;
                     Console.Write("which work do you want to execute ? : ");
-                    ChooseWork = Console.ReadLine();
+                    chooseWork = Console.ReadLine();
                     // convert string input user into a int value
-                    if (Int32.TryParse(ChooseWork, out x))
+                    if (Int32.TryParse(chooseWork, out x))
                     {
                         if (x > 0 && x < 6)
                         {
@@ -145,18 +143,18 @@ namespace projet.net
                 }
                 
                 Console.Write("Execute another work ? (y/n) : ");
-                AnotherWork = Console.ReadLine();
-                while (ChoiceAnotherWork)
+                anotherWork = Console.ReadLine();
+                while (choiceAnotherWork)
                 {
-                    if (AnotherWork == "y")
+                    if (anotherWork == "y")
                     {
                         numberchoice = true;
                         break;
                     }
-                    else if (AnotherWork == "n")
+                    else if (anotherWork == "n")
                     {
                         choiceExecute = false;
-                        ChoiceAnotherWork = false;
+                        choiceAnotherWork = false;
                     }
                     else
                     {
@@ -166,12 +164,12 @@ namespace projet.net
                 }
             }
             // print the list
-            /*
+
             foreach (int i in ListExecuteWork)
             {
                 Console.WriteLine(i);
             }
-            */
+
             return ListExecuteWork;
             
             //call the method ExecuteXWork
