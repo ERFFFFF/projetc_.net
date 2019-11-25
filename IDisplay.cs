@@ -9,7 +9,7 @@ namespace projet.net
     interface IDisplay
     {
         int DisplayChoices();
-        void DisplayCreateNewWork();
+        DisplayConsole.Work DisplayCreateNewWork();
         List<int> DisplayExecuteXWork();
     }
 }

@@ -8,7 +8,17 @@ namespace projet.net
 {
     class DisplayConsole : IDisplay
     {
-        WorkManager workManager = new WorkManager();
+        internal class Work
+        {
+            public string name { get; set; }
+            public string sourcePath { get; set; }
+            public string targetPath { get; set; }
+            public string saveType { get; set; }
+            public int saveNumber { get; set; }
+            
+        }
+
+       // WorkManager workManager = new WorkManager();
 
         public int DisplayChoices()
         {
@@ -46,30 +56,49 @@ namespace projet.net
                 }
             }
         }
-        public void DisplayCreateNewWork()
+        public Work DisplayCreateNewWork()
         {
-            string NameWork;
-            string SaveType;
-            string SourceDirectory;
-            string TargetDirectory;
+            Work works = new Work
+            {
+                name = "",
+                sourcePath = "",
+                targetPath = "",
+                saveType = "",
+                saveNumber = 0
+            };
+            // function majuscule
+            string name = "Name of your work : ";
+            works.name = loop(name);
+
+            string saveType = "Mirror save or Diferential save ? : ";
+            works.saveType = loop(saveType);
+
+            String sourcePath = "Source Directory of your work : ";
+            works.sourcePath = loop(sourcePath);
+
+            string targetPath = "Targeted Directory of your the work : ";
+            works.targetPath = loop(targetPath);
+
+            if (works.saveType != "Mirror" && works.saveType != "Differential")
+            {
+                Console.WriteLine("Please enter a correct value. ddddd");
+            }
+            return works;
+        }
+        public string loop(string consoleLog)
+        {
+            string checkEmpty;
             do
             {
-                Console.Write("Name of your work : ");
-                NameWork = Console.ReadLine();
+                Console.Write(consoleLog);
+                checkEmpty = Console.ReadLine();
+                if (checkEmpty == "")
+                {
+                    Console.WriteLine("Please enter a correct value.");
+                }
 
-                Console.Write("Mirror save or Diferential save ? : ");
-                SaveType = Console.ReadLine();
-
-                Console.Write("Source Directory of your work : ");
-                SourceDirectory = Console.ReadLine();
-
-                Console.Write("Targeted Directory of your the work : ");
-                TargetDirectory = Console.ReadLine();
-
-                // call the method CreateNewWork
-                workManager.createNewWork(NameWork, SaveType, SourceDirectory, TargetDirectory);
-            }
-            while (workManager.NoLoop == false);
+            } while (string.IsNullOrEmpty(checkEmpty));
+            return checkEmpty;
         }
         public List<int> DisplayExecuteXWork()
         {
@@ -78,7 +107,7 @@ namespace projet.net
             string AnotherWork;
             bool choiceExecute = true;
             bool numberchoice = true;
-            bool ChoiceAnotherWord = true;
+            bool ChoiceAnotherWork = true;
             // call the ReadFile method in FileManager class
 
 
@@ -117,7 +146,7 @@ namespace projet.net
                 
                 Console.Write("Execute another work ? (y/n) : ");
                 AnotherWork = Console.ReadLine();
-                while (ChoiceAnotherWord)
+                while (ChoiceAnotherWork)
                 {
                     if (AnotherWork == "y")
                     {
@@ -127,7 +156,7 @@ namespace projet.net
                     else if (AnotherWork == "n")
                     {
                         choiceExecute = false;
-                        ChoiceAnotherWord = false;
+                        ChoiceAnotherWork = false;
                     }
                     else
                     {
